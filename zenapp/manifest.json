@@ -1,0 +1,8 @@
+{
+	"name": "Cordova hosted web app",
+	"short_name": "hostedWebApp",
+	"start_url": "http://studioamaka.com.ng/",
+	"mjs_api_access": [
+		{ "match": "*", "access": "cordova", "platform": "ios,windows,android" }
+	]
+}

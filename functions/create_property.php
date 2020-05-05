@@ -23,17 +23,24 @@ include("connect.php")?>
     $fimage = $_FILES['fimage']['name'];
     $target_dir = "../img/property/";
     $target_file = $target_dir . basename($_FILES['fimage']['name']);
-    for($count = 0; $count < count($_FILES["images"]["tmp_name"]); $count++)
-    {
-        $pimage = addslashes(file_get_contents($_FILES["images"]["tmp_name"][$count]));    
-    $query = "INSERT INTO properties (vendor, title, description, fimage, images, phone, phone2, email, property_type, price,
-    location, pros, cons, transaction_state, urgency)
-    VALUE ('{$name}', '{$title}', '{$description}', '{$fimage}', '{$pimage}', '{$phone}', '{$phone2}', '{$email}', '{$propertytype}',
-    '{$price}', '{$location}', '{$pros}', '{$cons}', '{$transacttype}', '{$urgency}')";
-    // hello here i will add
-    $result = mysqli_query($connection, $query);
+    for($count = 0; $count < count($_FILES["images"]["name"]); $count++)
+        {
+            $filename = $_FILES["images"]["name"][$count];
+            $filetmp = $_FILES["images"]["tmp_name"][$count];
+            $filepath= "../img/property/".$filename;
 
-var_dump($result);
+            
+            move_uploaded_file($filetmp,$filepath); 
+            $pimage = addslashes(file_get_contents($_FILES["images"]["tmp_name"][$count]));  
+            $query = "INSERT INTO properties (vendor, title, description, fimage, images, phone, phone2, email, property_type, price,
+            location, pros, cons, transaction_state, urgency)
+            VALUE ('{$name}', '{$title}', '{$description}', '{$fimage}', '{$pimage}', '{$phone}', '{$phone2}', '{$email}', '{$propertytype}',
+            '{$price}', '{$location}', '{$pros}', '{$cons}', '{$transacttype}', '{$urgency}')";
+            // hello here i will add
+            $result = mysqli_query($connection, $query);
+
+            var_dump($result);
+        }
 if ($result) {
     // Upload file
     move_uploaded_file($_FILES['fimage']['tmp_name'],$target_dir.$fimage);
@@ -45,5 +52,4 @@ if ($result) {
     //Display an error
     echo "<p>User creation failed</p>";
 }
- }
 ?>

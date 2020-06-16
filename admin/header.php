@@ -28,11 +28,13 @@ include("../functions/connect.php")
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Autocomplete -->
-  <script src="autocomplete.js"></script>
-  <link href="autocomplete.css" rel="stylesheet">
-  <script>
+  <!-- <script src="autocomplete.js"></script> -->
+  <!-- <link href="autocomplete.css" rel="stylesheet"> -->
+  <!-- <script>
     window.addEventListener("load", function(){
       	suggest.attach({
         target : "inputA",
@@ -46,7 +48,7 @@ include("../functions/connect.php")
         
      	 });
     	});
-  </script>
+  </script> -->
   <style>
   /* custom css */
   .ac_results {
@@ -181,7 +183,7 @@ include("../functions/connect.php")
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Search for...">
@@ -192,6 +194,11 @@ include("../functions/connect.php")
               </span>
             </div>
           </form>
+        </li> -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="text-transform:uppercase">
+            <i class="fa fa-person"></i><?php echo $_SESSION['username']; ?>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

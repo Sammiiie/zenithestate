@@ -33,7 +33,7 @@ include('header.php');
 						<h2 class="section-title">Important</h2>
 						<ul class="news-list">
 						<?php
-                        $query = "SELECT * from info LIMIT 4";
+                        $query = "SELECT * from info Where status = 'important' LIMIT 4";
 						$result = mysqli_query($connection, $query);
 						if (mysqli_num_rows($result) > 0) {
 							while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

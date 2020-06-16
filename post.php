@@ -1,6 +1,6 @@
 <?php
 
-$page_title = "Home";
+$page_title = "Info";
 include('header.php');
 
 if (isset($_GET['view'])) {

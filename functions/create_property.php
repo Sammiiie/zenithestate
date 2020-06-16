@@ -23,6 +23,18 @@ include("connect.php")?>
     $fimage = $_FILES['fimage']['name'];
     $target_dir = "../img/property/";
     $target_file = $target_dir . basename($_FILES['fimage']['name']);
+
+    $query = "INSERT INTO properties (vendor, title, description, fimage, phone, phone2, email, property_type, price,
+            location, pros, cons, transaction_state, urgency)
+            VALUE ('{$name}', '{$title}', '{$description}', '{$fimage}', '{$phone}', '{$phone2}', '{$email}', '{$propertytype}',
+            '{$price}', '{$location}', '{$pros}', '{$cons}', '{$transacttype}', '{$urgency}')";
+            // hello here i will add
+            $result = mysqli_query($connection, $query);
+
+            
+if ($result) {
+    // Upload file
+    move_uploaded_file($_FILES['fimage']['tmp_name'],$target_dir.$fimage);
     for($count = 0; $count < count($_FILES["images"]["name"]); $count++)
         {
             $filename = $_FILES["images"]["name"][$count];
@@ -31,23 +43,18 @@ include("connect.php")?>
 
             
             move_uploaded_file($filetmp,$filepath); 
-            $pimage = addslashes(file_get_contents($_FILES["images"]["tmp_name"][$count]));  
-            $query = "INSERT INTO properties (vendor, title, description, fimage, images, phone, phone2, email, property_type, price,
-            location, pros, cons, transaction_state, urgency)
-            VALUE ('{$name}', '{$title}', '{$description}', '{$fimage}', '{$pimage}', '{$phone}', '{$phone2}', '{$email}', '{$propertytype}',
-            '{$price}', '{$location}', '{$pros}', '{$cons}', '{$transacttype}', '{$urgency}')";
-            // hello here i will add
-            $result = mysqli_query($connection, $query);
-
-            var_dump($result);
+            $pimage = $_FILES["images"]["name"][$count];  
+            $query2 = "INSERT INTO images (title, image)
+            VALUE ('{$title}', '{$pimage}')";
+            $result2 = mysqli_query($connection, $query2);
+            // var_dump($connection);
         }
-if ($result) {
-    // Upload file
-    move_uploaded_file($_FILES['fimage']['tmp_name'],$target_dir.$fimage);
     // move_uploaded_file($_FILES['simage']['tmp_name'],$target_dir2.$simage);
     // success
-    header("Location: ../admin/properties.php");
-    exit;
+    if($result2){
+        header("Location: ../admin/properties.php");
+        exit;
+    }
 } else {
     //Display an error
     echo "<p>User creation failed</p>";

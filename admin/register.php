@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>SB Admin - Start Bootstrap Template</title>
+  <title>Zenestate</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -19,42 +19,69 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Register an Account</div>
+      <div class="card-header">Create an Account</div>
       <div class="card-body">
-        <form>
+        <form action="../functions/manage_users_data.php" method="POST">
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
-                <label for="exampleInputName">First name</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name">
+                <label for="exampleInputName">Full name</label>
+                <input class="form-control" id="" name="name" type="text" aria-describedby="nameHelp" placeholder="Enter full name">
               </div>
               <div class="col-md-6">
-                <label for="exampleInputLastName">Last name</label>
-                <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name">
+                <label for="exampleInputLastName">Username</label>
+                <input class="form-control" id="" name="username" type="text" aria-describedby="nameHelp" placeholder="Enter username">
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="">Phone</label>
+                <input class="form-control" id="" name="phone" type="tel" aria-describedby="nameHelp" placeholder="07000000021">
+              </div>
+              <div class="col-md-6">
+                <label for="">Phone2</label>
+                <input class="form-control" id="" name="phone2" type="tel" aria-describedby="nameHelp" placeholder="090932300407">
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
-                <label for="exampleInputPassword1">Password</label>
-                <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                <label for="exampleInputEmail1">Email address</label>
+                <input class="form-control" id="" name="email" type="email" aria-describedby="emailHelp" placeholder="Enter email" required>
               </div>
               <div class="col-md-6">
-                <label for="exampleConfirmPassword">Confirm password</label>
-                <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password">
+                <label for="">User-Type</label>
+                <input class="form-control" id="" name="user_type" type="text" aria-describedby="nameHelp" value="Vendor" readonly>
               </div>
             </div>
           </div>
-          <a class="btn btn-primary btn-block" href="login.html">Register</a>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Address</label>
+            <input class="form-control" id="" name="address" type="text" aria-describedby="emailHelp" placeholder="Enter Contact address">
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="exampleInputPassword1">Sex</label>
+                <select name="sex" id="" class="form-control">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="exampleConfirmPassword">Password</label>
+                <input class="form-control" id="exampleConfirmPassword" name="password" type="password" placeholder="Password" required>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="login.html">Login Page</a>
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+          <a class="d-block small mt-3" href="login.php">Login Page</a>
+          <a class="d-block small" href="forgot-password.php">Forgot Password?</a>
         </div>
       </div>
     </div>

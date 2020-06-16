@@ -46,9 +46,10 @@ include('functions/connect.php');
 							<li class="menu-item"><a href="info.php">Info</a></li>
 							<li class="menu-item"><a href="about.php">About</a></li>
                             <li class="menu-item"><a href="rent.php">Rent</a></li>
-                            <li class="menu-item"><a href="sell.php">Buy</a></li>
+							<li class="menu-item"><a href="sell.php">Buy</a></li>
+							<li class="menu-item"><a href="cars.php">Vehicles</a></li>
                             <li class="menu-item"><a href="contact.php">Contact</a></li>
-                            <li class="menu-item"><a class="button" href="admin/index.php">Login</a></li>
+                            <li class="menu-item"><a class="button" target="_blank" href="admin/index.php">Login</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 

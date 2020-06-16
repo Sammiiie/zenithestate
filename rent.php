@@ -13,10 +13,10 @@ include('header.php');
 						<p>We have everything you need tailored to your taste</p>
 
 						<div class="filter-links filterable-nav">
-						<select class="mobile-filter">
+							<select class="mobile-filter">
 								<option value="*">Show all</option>
 								<?php
-								$sql1 = "SELECT property_type FROM properties WHERE transaction_state = 'rent'";
+								$sql1 = "SELECT DISTINCT property_type FROM properties WHERE transaction_state = 'rent'";
 								$result1 = mysqli_query($connection, $sql1);
 								if (mysqli_num_rows($result1) > 0) {
 									while($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
@@ -29,15 +29,15 @@ include('header.php');
 								}
 								?>
 							</select>
-							
+							<a href="#" class="current wow fadeInRight" data-filter="*">Show all</a>
 							<?php
-								$sql = "SELECT property_type FROM properties WHERE transaction_state = 'rent'";
+								$sql = "SELECT DISTINCT property_type FROM properties WHERE transaction_state = 'rent'";
 								$result2 = mysqli_query($connection, $sql);
 								if (mysqli_num_rows($result2) > 0) {
 									while($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 								?>
-								<a href="#" class="current wow fadeInRight" data-filter="*">Show all</a>
-							<a href="#" class="wow fadeInRight" data-wow-delay=".2s" data-filter="<?php echo ".".$row["property_type"]; ?>"><?php echo $row['property_type']; ?></a>
+								
+								<a href="#" class="wow fadeInRight" data-wow-delay=".2s" data-filter="<?php echo ".".$row["property_type"]; ?>"><?php echo $row['property_type']; ?></a>
 							<?php
 									}
 								}
@@ -53,10 +53,10 @@ include('header.php');
                         ?>
 							<div class="project-item filterable-item <?php echo $row["property_type"]; ?>">
 								<figure class="featured-image">
-									<a href="project-single.html"><img src="img/property/<?php echo $row["fimage"]; ?>" alt="#"></a>
+									<a href="single.php?view=<?php echo $row["id"]; ?>"><img src="img/property/<?php echo $row["fimage"]; ?>" alt="#"></a>
 									<figcaption>
-										<h2 class="project-title"><a href="project-single.html"><?php echo $row["title"]; ?></a></h2>
-										<p class="project-subtotle"><?php echo $row["price"]; ?></p>
+										<h2 class="project-title"><a href="single.php?view=<?php echo $row["id"]; ?>"><?php echo $row["title"]; ?></a></h2>
+										<p class="project-subtotle">&#8358; <?php echo number_format($row["price"], 2, ".", ","); ?></p>
 										<p><?php echo $row["location"]; ?></p>
 										<a href="single.php?view=<?php echo $row["id"]; ?>" class="more-link"><img src="images/arrow.png" alt=""></a>
 									</figcaption>

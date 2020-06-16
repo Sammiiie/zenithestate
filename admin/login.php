@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, name, email, usertype, phone, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, name, email, usertype, phone, password, status FROM users WHERE username = ?";
         // $sqlj = "SELECT users.id, users.int_id, users.username, users.fullname, users.usertype, users.password, org_role, display_name FROM staff JOIN users ON users.id = staff.user_id WHERE users.username = "sam"";
         
         if($stmt = mysqli_prepare($connection, $sql)){
@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $name, $email, $usertype, $phone, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $name, $email, $usertype, $phone, $hashed_password, $status);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;
                             $_SESSION["phone"] = $phone;
                             $_SESSION["usertype"] = $usertype;
-                            // $_SESSION["fullname"] = $fullname;
+                            $_SESSION["status"] = $status;
                             // $_SESSION["org_role"] = $org_role;
                             // $_SESSION["employee_status"] = $employee_status;
                             // $_SESSION["lastname"] = $lastname;
@@ -139,12 +139,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <input class="form-control" name="password" id="exampleInputPassword1" type="password" placeholder="Password">
             <span class="help-block"><?php echo $password_err; ?></span>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <div class="form-check">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox"> Remember Password</label>
             </div>
-          </div>
+          </div> -->
           <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
         <div class="text-center">

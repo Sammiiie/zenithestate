@@ -49,47 +49,30 @@ include('header.php');
 					<div class="container">
 						<h2 class="section-title">Latest properties</h2>
 						<div class="row">
+						<?php
+								$sql1 = "SELECT * FROM properties ORDER BY id desc LIMIT 4";
+								$result1 = mysqli_query($connection, $sql1);
+								if (mysqli_num_rows($result1) > 0) {
+									while($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+								?>
 							<div class="col-sm-6 col-md-3">
 								<div class="project">
-									<figure class="project-thumbnail"><img src="dummy/thumb-1.jpg" alt="Project 1"></figure>
-									<h3 class="project-title"><a href="#">elit eiusmod tempor</a></h3>
-									<small class="project-subtitle">irure dolor voluptate</small>
-									<p>Nemo enim ipsam voluptatem quia voluptas aspernatur aut odit fugit consequuntur magni dolores eos qui ratione voluptatem sequi.</p>
-									<a href="#" class="more-link"><img src="images/arrow.png" alt=""></a>
+									<figure class="project-thumbnail"><img src="img/property/<?php echo $row["fimage"]; ?>" alt="Project 1"></figure>
+									<h3 class="project-title"><a href="single.php?view=<?php echo $row["id"]; ?>"><?php echo $row["title"]; ?></a></h3>
+									<small class="project-subtitle">&#8358; <?php echo number_format($row["price"], 2, ".", ","); ?></small>
+									<?php echo substr($row["description"], 0, 40); ?>
+									<a href="single.php?view=<?php echo $row["id"]; ?>" class="more-link"><img src="images/arrow.png" alt=""></a>
 								</div>
 							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="project">
-									<figure class="project-thumbnail"><img src="dummy/thumb-2.jpg" alt="Project 2"></figure>
-									<h3 class="project-title"><a href="#">elit eiusmod tempor</a></h3>
-									<small class="project-subtitle">irure dolor voluptate</small>
-									<p>Nemo enim ipsam voluptatem quia voluptas aspernatur aut odit fugit consequuntur magni dolores eos qui ratione voluptatem sequi.</p>
-									<a href="#" class="more-link"><img src="images/arrow.png" alt=""></a>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="project">
-									<figure class="project-thumbnail"><img src="dummy/thumb-3.jpg" alt="Project 3"></figure>
-									<h3 class="project-title"><a href="#">elit eiusmod tempor</a></h3>
-									<small class="project-subtitle">irure dolor voluptate</small>
-									<p>Nemo enim ipsam voluptatem quia voluptas aspernatur aut odit fugit consequuntur magni dolores eos qui ratione voluptatem sequi.</p>
-									<a href="#" class="more-link"><img src="images/arrow.png" alt=""></a>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="project">
-									<figure class="project-thumbnail"><img src="dummy/thumb-4.jpg" alt="Project 4"></figure>
-									<h3 class="project-title"><a href="#">elit eiusmod tempor</a></h3>
-									<small class="project-subtitle">irure dolor voluptate</small>
-									<p>Nemo enim ipsam voluptatem quia voluptas aspernatur aut odit fugit consequuntur magni dolores eos qui ratione voluptatem sequi.</p>
-									<a href="#" class="more-link"><img src="images/arrow.png" alt=""></a>
-								</div>
-							</div>
+							<?php
+									}
+								}
+							?>
 						</div> <!-- .row -->
 					</div> <!-- .container -->
 				</div> <!-- .fullwidth-block.latest-projects-section -->
 
-				<div class="fullwidth-block image-block" data-bg-image="dummy/section-img.png"></div>
+				<div class="fullwidth-block image-block" data-bg-image="dummy/section-img.jpg"></div>
 
 				<div class="fullwidth-block">
 					<div class="container">
@@ -122,20 +105,20 @@ include('header.php');
 									<ul class="slides">
 										<li>
 											<blockquote>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, dolorum nostrum suscipit. Sunt tenetur accusantium eligendi illo perferendis. Commodi iste nihil eius, doloremque aperiam iure repellat sequi enim sint similique!</p>
-												<cite>Jessica Waton</cite>
+												<p>They went out of their way to deliver a property I truly apprecaite and that makes me happy</p>
+												<cite>Jacob</cite>
 											</blockquote>
 										</li>
 										<li>
 											<blockquote>
-												<p>Ut ullam sed accusamus aliquam rerum tempora ab voluptatibus, nostrum vitae nesciunt quam atque! Tempora dolorem quas pariatur debitis nulla, molestiae, obcaecati voluptatibus quisquam, facilis quis sint eos, corporis assumenda.</p>
-												<cite>Jessica Waton</cite>
+												<p>They are good.</p>
+												<cite>Chizoba</cite>
 											</blockquote>
 										</li>
 										<li>
 											<blockquote>
-												<p>Fuga provident modi illo dolorum, neque labore natus ratione, totam id sequi vero repudiandae velit nemo nobis corporis tenetur. Magnam velit est cumque incidunt unde delectus labore inventore eaque vitae?</p>
-												<cite>Jessica Waton</cite>
+												<p>I was able to sell my car</p>
+												<cite>Franca</cite>
 											</blockquote>
 										</li>
 									</ul>
@@ -144,14 +127,20 @@ include('header.php');
 							<div class="col-md-6">
 								<h2 class="section-title">Latest News</h2>
 								<ul class="news">
+									<?php
+									$query = "SELECT * from info ORDER BY id DESC LIMIT 2";
+									$result = mysqli_query($connection, $query);
+									if (mysqli_num_rows($result) > 0) {
+										while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+									?>
 									<li>
-										<div class="date">30.09.2014</div>
-										<h3 class="entry-title"><a href="#">Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim...</a></h3>
+										<div class="date"><?php echo $row["date_created"]; ?></div>
+										<h3 class="entry-title"><a href="post.php?view=<?php echo $row["id"]; ?>"><?php echo substr($row["post"], 0, 100); ?>...</a></h3>
 									</li>
-									<li>
-										<div class="date">30.09.2014</div>
-										<h3 class="entry-title"><a href="#">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur...</a></h3>
-									</li>
+									<?php
+										}
+									}
+									?>
 								</ul>
 							</div>
 						</div> <!-- .row -->

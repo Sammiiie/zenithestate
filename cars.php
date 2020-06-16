@@ -29,12 +29,12 @@ include('header.php');
 							<select class="mobile-filter">
 								<option value="*">Show all</option>
 								<?php
-								$sql1 = "SELECT DISTINCT property_type FROM properties WHERE transaction_state = 'sell'";
+								$sql1 = "SELECT DISTINCT transaction_state FROM properties WHERE property_type = 'car'";
 								$result1 = mysqli_query($connection, $sql1);
 								if (mysqli_num_rows($result1) > 0) {
 									while($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 								?>
-								<option value="<?php echo ".".$row['property_type']; ?>"><?php echo $row['property_type']; ?></option>
+								<option value="<?php echo ".".$row['transaction_state']; ?>"><?php echo $row['transaction_state']; ?></option>
 								<!-- <option value=".shopping-center">shopping-center</option>
 								<option value=".apartment">apartment</option> -->
 								<?php
@@ -44,13 +44,13 @@ include('header.php');
 							</select>
 							<a href="#" class="current wow fadeInRight" data-filter="*">Show all</a>
 							<?php
-								$sql = "SELECT DISTINCT property_type FROM properties WHERE transaction_state = 'sell'";
+								$sql = "SELECT DISTINCT transaction_state FROM properties WHERE property_type = 'car'";
 								$result2 = mysqli_query($connection, $sql);
 								if (mysqli_num_rows($result2) > 0) {
 									while($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 								?>
 								
-								<a href="#" class="wow fadeInRight" data-wow-delay=".2s" data-filter="<?php echo ".".$row["property_type"]; ?>"><?php echo $row['property_type']; ?></a>
+								<a href="#" class="wow fadeInRight" data-wow-delay=".2s" data-filter="<?php echo ".".$row["transaction_state"]; ?>"><?php echo $row['property_type']; ?></a>
 							<?php
 									}
 								}
@@ -61,12 +61,12 @@ include('header.php');
 
 						<div class="filterable-items">
 						<?php
-                        $query = "SELECT * from properties WHERE transaction_state = 'sell' ORDER BY id desc";
+                        $query = "SELECT * from properties WHERE property_type = 'car' ORDER BY id desc";
 						$result = mysqli_query($connection, $query);
 						if (mysqli_num_rows($result) > 0) {
 							while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                         ?>
-							<div class="project-item filterable-item <?php echo $row["property_type"]; ?>">
+							<div class="project-item filterable-item <?php echo $row["transaction_state"]; ?>">
 								<figure class="featured-image">
 									<a href="single.php?view=<?php echo $row["id"]; ?>"><img src="img/property/<?php echo $row["fimage"]; ?>" alt="#"></a>
 									<figcaption>
